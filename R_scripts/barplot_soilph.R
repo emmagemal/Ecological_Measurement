@@ -15,7 +15,7 @@ library(plotrix)
 
 
 ## Loading data ----
-soilph <- read.csv("soil-ph-data.csv")
+soilph <- read.csv("Data/soil-ph-data.csv")
 str(soilph)
 
 
@@ -95,13 +95,13 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
                                      "#80cdc1",
                                      "#018571")) +
         labs(y = "pH") +
-        theme_grey() +
+        theme_classic() +
         theme(axis.title.x = element_blank(),
               axis.text.x = element_text(size = 10),
               axis.title.y = element_text(size = 15)) +
-        coord_cartesian(ylim = c(3,5.3)))
+        coord_cartesian(ylim = c(3.5,5.3)))
 
-# ggsave("managed_sites.png")
+# ggsave("managed_sites3.png")
 
 # secondary plots produced with ylim set to 4 and 5.x
 
