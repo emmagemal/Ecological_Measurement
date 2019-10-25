@@ -53,7 +53,7 @@ phmean_se <- soilph %>%
                       axis.title.y = element_text(size = 15)) +
                 coord_cartesian(ylim = c(4,5.6)))
 
-ggsave("allsites_scaled2.png")
+# ggsave("allsites_scaled2.png")
 
 
 ## All sites (reordered) ----
@@ -81,7 +81,7 @@ sites_ordered <- phmean_se %>%
                               axis.title.y = element_text(size = 15)) +
                         coord_cartesian(ylim = c(4,5.6)))
 
-ggsave("allsites_ordered_scaled2.png")
+# ggsave("allsites_ordered_scaled2.png")
 
 
 ## Managed sites ----
@@ -101,7 +101,7 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
               axis.title.y = element_text(size = 15)) +
         coord_cartesian(ylim = c(3,5.3)))
 
-ggsave("managed_sites.png")
+# ggsave("managed_sites.png")
 
 # secondary plots produced with ylim set to 4 and 5.x
 
@@ -123,7 +123,7 @@ ggsave("managed_sites.png")
            axis.title.y = element_text(size = 15)) +
      coord_cartesian(ylim = c(4,5.6)))
 
-ggsave("all_bw.png")
+# ggsave("all_bw.png")
 
 # all sites rearranged  
 (all_ord_bw <- ggplot(data = sites_ordered, aes(x = site, y = mean_ph, fill = site)) +
@@ -141,7 +141,7 @@ ggsave("all_bw.png")
               axis.title.y = element_text(size = 15)) +
         coord_cartesian(ylim = c(4,5.6)))
 
-ggsave("all_order_bw.png")
+# ggsave("all_order_bw.png")
 
 # managed sites 
 (managed_bw <- ggplot(data = managed_sites, aes(x = site, y = mean_ph, fill = site)) +
@@ -158,4 +158,4 @@ ggsave("all_order_bw.png")
               axis.title.y = element_text(size = 15)) +
         coord_cartesian(ylim = c(4,5.2)))
 
-ggsave("managed_bw.png")
+# ggsave("managed_bw.png")
