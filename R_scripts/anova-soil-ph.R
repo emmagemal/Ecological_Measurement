@@ -21,12 +21,18 @@ setwd("/Users/emmagemal/Documents/Uni Work/Year 3/Ecological Measurement")
 
 ## all sites ----
 # ANOVA for all sites (including grassland)
-soilph <- read.csv("~/Documents/Uni Work/Year 3/Ecological Measurement/soil-ph-data.csv")
+getwd()
+soilph <- read.csv("Data/soil-ph-data.csv")
 str(soilph)    #checking to make sure site is a factor
 
 aov.all <- summary(aov(ph ~ site, data = soilph))
 aov.all
 # p-value = 1.56e-13 (statistically significant)
+# F value: 31.06
+
+# object for Tukey test
+data4tukey <- aov(ph ~ site, data = soilph)
+
 
 plot(aov(ph ~ site, data = soilph))  # checking model convergence 
 
@@ -62,3 +68,17 @@ str(managementph)   # double checking number of levels and variable names
 aov.management <- summary(aov(ph ~ management, data = managementph))
 aov.management
 # p-value = 0.538 (not statistically significant)
+
+## Tukey test ----
+# library
+library(multcompView)
+
+
+# Tukey test to study each pair of treatment :
+TUKEY <- TukeyHSD(x=data4tukey)
+# Tuckey test representation :
+plot(TUKEY , las=1 , col="brown")
+
+TUKEY
+# -> significant difference between 1&3, 1&4, 2&3, 2&4 and all with 5
+# not significant for 1&2 and 3&4
