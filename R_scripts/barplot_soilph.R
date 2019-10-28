@@ -2,10 +2,8 @@
 # Attempting to produce a bar chart 
 # Emma Gemal, s1758915@sms.ed.ac.uk
 # University of Edinburgh
-# Created 22/10/2019
+# Created 22/10/2019, Updated: 28/10/2019
 
-
-setwd("~/Documents/Uni Work/Year 3/Ecological Measurement")
 
 ## Library ----
 library(plyr)
@@ -135,13 +133,24 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
                                      "#636363",
                                      "#252525")) +
         labs(y = "pH") +
+        scale_x_discrete(labels = c("Young.Recovering" = "Young\nRecovering", 
+                                    "Old.Recovering" = "Old\nRecovering", 
+                                    "Young.Plantation" = "Young\nPlantation", 
+                                    "Old.Plantation" = "Old\nPlantation", 
+                                    "Grassland" = "Grassland")) +   # makes it more clear
         theme_light() +
         theme(axis.title.x = element_blank(),
-              axis.text.x = element_text(size = 10),
-              axis.title.y = element_text(size = 15)) +
-        coord_cartesian(ylim = c(4,5.6)))
+              axis.text.x = element_text(size = 9),
+              axis.title.y = element_text(size = 15),
+              axis.text.y = element_text(size = 12))) +
+        coord_cartesian(ylim = c(3.5,5.6))
 
-# ggsave("all_order_bw.png")
+# Saving & Finalizing Plots ----
+ggsave(filename = "allsites_ordered_bw.png",
+       path = "Scaled_graphs",
+       width = 4.1,
+       height = 4.3, units = c("in"))
+
 
 # managed sites 
 (managed_bw <- ggplot(data = managed_sites, aes(x = site, y = mean_ph, fill = site)) +
