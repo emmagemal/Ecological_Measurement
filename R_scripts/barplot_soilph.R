@@ -51,8 +51,6 @@ phmean_se <- soilph %>%
                       axis.title.y = element_text(size = 15)) +
                 coord_cartesian(ylim = c(4,5.6)))
 
-# ggsave("allsites_scaled2.png")
-
 
 ## All sites (reordered) ----
 sites_ordered <- phmean_se %>% 
@@ -65,7 +63,7 @@ sites_ordered <- phmean_se %>%
 
 # plot of all sites (ordered by recovering and plantation)
 (plot_all_ordered <- ggplot(data = sites_ordered, aes(x = site, y = mean_ph, fill = site)) +
-                        geom_col(show.legend = FALSE, width = 0.7) +
+                        geom_col(show.legend = FALSE, width = 0.8, color = "black") +
                         geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.1) +
                         scale_fill_manual(values = c("#a6611a", 
                                                      "#dfc27d",
@@ -73,13 +71,18 @@ sites_ordered <- phmean_se %>%
                                                      "#018571",
                                                      "#21332A")) +
                         labs(y = "pH") +
+                        scale_x_discrete(labels = c("Young.Recovering" = "Young\nRecovering", 
+                                                    "Old.Recovering" = "Old\nRecovering", 
+                                                    "Young.Plantation" = "Young\nPlantation", 
+                                                    "Old.Plantation" = "Old\nPlantation", 
+                                                    "Grassland" = "Grassland")) +
                         theme_grey() +
                         theme(axis.title.x = element_blank(),
-                              axis.text.x = element_text(size = 10),
-                              axis.title.y = element_text(size = 15)) +
-                        coord_cartesian(ylim = c(4,5.6)))
+                              axis.text.x = element_text(size = 7),
+                              axis.title.y = element_text(size = 12),
+                              axis.text.y = element_text(size = 10)) +
+                        coord_cartesian(ylim = c(3.5,5.6)))
 
-# ggsave("allsites_ordered_scaled2.png")
 
 
 ## Managed sites ----
@@ -99,9 +102,6 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
               axis.title.y = element_text(size = 15)) +
         coord_cartesian(ylim = c(3.5,5.3)))
 
-# ggsave("managed_sites3.png")
-
-# secondary plots produced with ylim set to 4 and 5.x
 
 
 ## Black & White plots ----
@@ -121,12 +121,11 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
            axis.title.y = element_text(size = 15)) +
      coord_cartesian(ylim = c(4,5.6)))
 
-# ggsave("all_bw.png")
 
 # all sites rearranged  
 (all_ord_bw <- ggplot(data = sites_ordered, aes(x = site, y = mean_ph, fill = site)) +
-        geom_col(show.legend = FALSE, width = 0.7, color = "black") +
-        geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.1) +
+        geom_col(show.legend = FALSE, width = 0.8, color = "black") +
+        geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.08) +
         scale_fill_manual(values = c("#f7f7f7", 
                                      "#cccccc",
                                      "#969696",
@@ -140,16 +139,10 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
                                     "Grassland" = "Grassland")) +   # makes it more clear
         theme_light() +
         theme(axis.title.x = element_blank(),
-              axis.text.x = element_text(size = 9),
-              axis.title.y = element_text(size = 15),
-              axis.text.y = element_text(size = 12))) +
+              axis.text.x = element_text(size = 7),
+              axis.title.y = element_text(size = 13),
+              axis.text.y = element_text(size = 10))) +
         coord_cartesian(ylim = c(3.5,5.6))
-
-# Saving & Finalizing Plots ----
-ggsave(filename = "allsites_ordered_bw.png",
-       path = "Scaled_graphs",
-       width = 4.1,
-       height = 4.3, units = c("in"))
 
 
 # managed sites 
@@ -167,4 +160,9 @@ ggsave(filename = "allsites_ordered_bw.png",
               axis.title.y = element_text(size = 15)) +
         coord_cartesian(ylim = c(4,5.2)))
 
-# ggsave("managed_bw.png")
+
+# Saving & Finalizing Plots ----
+ggsave(filename = "all_ordered_border2.png",
+       path = "Scaled_graphs",
+       width = 3.7,
+       height = 3.5, units = c("in"))
