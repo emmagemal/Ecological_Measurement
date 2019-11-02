@@ -124,7 +124,7 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
 
 # all sites rearranged  
 (all_ord_bw <- ggplot(data = sites_ordered, aes(x = site, y = mean_ph, fill = site)) +
-        geom_col(show.legend = FALSE, width = 0.8, color = "black") +
+        geom_col(show.legend = FALSE, width = 0.6, color = "black") +
         geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.08) +
         scale_fill_manual(values = c("#f7f7f7", 
                                      "#cccccc",
@@ -139,16 +139,16 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
                                     "Grassland" = "Grassland")) +   # makes it more clear
         theme_light() +
         theme(axis.title.x = element_blank(),
-              axis.text.x = element_text(size = 7),
-              axis.title.y = element_text(size = 13),
-              axis.text.y = element_text(size = 10))) +
+              axis.text.x = element_text(size = 10, angle = 30, hjust = 1),
+              axis.title.y = element_text(size = 13, vjust = 3),
+              axis.text.y = element_text(size = 12))) +
         coord_cartesian(ylim = c(3.5,5.6))
 
 
 # managed sites 
 (managed_bw <- ggplot(data = managed_sites, aes(x = site, y = mean_ph, fill = site)) +
         geom_col(show.legend = FALSE, width = 0.7, color = "black") +
-        geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.1) +
+        geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.08) +
         scale_fill_manual(values = c("#f7f7f7", 
                                      "#cccccc",
                                      "#969696",
@@ -156,13 +156,13 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
         labs(y = "pH") +
         theme_light() +
         theme(axis.title.x = element_blank(),
-              axis.text.x = element_text(size = 10),
+              axis.text.x = element_text(size = 13),
               axis.title.y = element_text(size = 15)) +
         coord_cartesian(ylim = c(4,5.2)))
 
 
 # Saving & Finalizing Plots ----
-ggsave(filename = "all_ordered_border2.png",
-       path = "Scaled_graphs",
+ggsave(filename = "all_spaced.png",
+       path = "Images/Graphs",
        width = 3.7,
-       height = 3.5, units = c("in"))
+       height = 4, units = c("in"))

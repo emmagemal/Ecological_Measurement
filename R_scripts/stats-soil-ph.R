@@ -55,18 +55,19 @@ str(managementph)   # double checking number of levels and variable names
 aov.management <- summary(aov(ph ~ management, data = managementph))
 aov.management
 # p-value = 0.538 (not statistically significant)
-# F-value = 0.384
+# F-value = 0.384 (not significant)
 
 
 ## Tukey test ----
 data4tukey <- aov(ph ~ site, data = soilph)
 
-# Tukey test to study each pair of treatment :
+# Tukey test to study each pair of treatment
 tukey <- TukeyHSD(x=data4tukey)
-
-# Tuckey test representation :
-plot(tukey , las=1 , col="brown")   # not 100% needed 
 
 tukey 
 # significant difference between 1&3, 1&4, 2&3, 2&4 and all with 5
 # not significant for 1&2 and 3&4
+# 1 = young recovering, 2 = young plantation, 3 = old recovering, 4 = old plantation, 5 = grassland
+
+# Tuckey test representation
+plot(tukey , las=1 , col="brown")   # not 100% needed 
