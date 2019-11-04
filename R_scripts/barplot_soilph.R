@@ -106,24 +106,7 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
 
 ## Black & White plots ----
 # all sites
-(all_bw <- ggplot(data = phmean_se, aes(x = site, y = mean_ph, fill = site)) +
-     geom_col(show.legend = FALSE, width = 0.7, color = "black") +
-     geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.1) +
-     scale_fill_manual(values = c("#f7f7f7", 
-                                  "#cccccc",
-                                  "#969696",
-                                  "#636363",
-                                  "#252525")) +
-     labs(y = "pH") +
-     theme_light() +    # has to go before the other theme preferences  
-     theme(axis.title.x = element_blank(),
-           axis.text.x = element_text(size = 10),
-           axis.title.y = element_text(size = 15)) +
-     coord_cartesian(ylim = c(4,5.6)))
-
-
-# all sites rearranged  
-(all_ord_bw <- ggplot(data = sites_ordered, aes(x = site, y = mean_ph, fill = site)) +
+all_bw <- ggplot(data = phmean_se, aes(x = site, y = mean_ph, fill = site)) +
         geom_col(show.legend = FALSE, width = 0.6, color = "black") +
         geom_errorbar(aes(ymin = mean_ph - se, ymax = mean_ph + se), width = 0.08) +
         scale_fill_manual(values = c("#f7f7f7", 
@@ -133,15 +116,15 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
                                      "#252525")) +
         labs(y = "pH") +
         scale_x_discrete(labels = c("Young.Recovering" = "Young\nRecovering", 
-                                    "Old.Recovering" = "Old\nRecovering", 
-                                    "Young.Plantation" = "Young\nPlantation", 
+                                    "Young.Plantation" = "Young\nPlantation",
+                                    "Old.Recovering" = "Old\nRecovering",
                                     "Old.Plantation" = "Old\nPlantation", 
                                     "Grassland" = "Grassland")) +   # makes it more clear
         theme_light() +
         theme(axis.title.x = element_blank(),
               axis.text.x = element_text(size = 10, angle = 30, hjust = 1),
               axis.title.y = element_text(size = 13, vjust = 3),
-              axis.text.y = element_text(size = 12))) +
+              axis.text.y = element_text(size = 12)) +
         coord_cartesian(ylim = c(3.5,5.6))
 
 
@@ -162,7 +145,7 @@ managed_sites <- subset(sites_ordered, site != "Grassland")
 
 
 # Saving & Finalizing Plots ----
-ggsave(filename = "all_spaced.png",
+ggsave(filename = "all_sites_spaced.png",
        path = "Images/Graphs",
        width = 3.7,
        height = 4, units = c("in"))
